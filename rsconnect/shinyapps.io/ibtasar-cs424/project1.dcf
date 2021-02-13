@@ -5,8 +5,9 @@ account: ibtasar-cs424
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3597734
-bundleId: 4211469
+bundleId: 4217800
 url: https://ibtasar-cs424.shinyapps.io/project1/
-when: 1613072955.24972
+when: 1613203322.95965
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: annual_generation_state.xlsx
