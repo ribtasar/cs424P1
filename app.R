@@ -95,6 +95,7 @@ percentsData <- mutate(percentsData,(PERCENTS=GENERATION/TOTALS)*100)
 percentsData<-rename(percentsData, PRODUCER=PRODUCER.x, SOURCE=SOURCE.x,TOTALSforYEAR=TOTALS)
 names(percentsData)[names(percentsData) == "(PERCENTS = GENERATION/TOTALS) * 100"] <- "PERCENTS"
 
+
 #for table displays hiding columns
 displayAmounts<- select(amountsData,YEAR,STATE,SOURCE,GENERATION)
 displayPercents<- select(percentsData,YEAR,STATE,SOURCE,PERCENTS)
@@ -104,6 +105,7 @@ displayPercents<- select(percentsData,YEAR,STATE,SOURCE,PERCENTS)
 years<-c(1990:2019)
 sourceList<-as.list(levels(sourceData$SOURCE))
 stateList<-as.list(levels(sourceData$STATE))
+#stateList<-state.name
 
 options(scipen = 999)
 
@@ -147,121 +149,9 @@ body<-dashboardBody(
                              "Wind Vs Solar" = "trend2",
                              "Nuclear Vs Coal" = "trend3",
                              "Wind Vs Solar" = "trend4",
-                             "Wind Vs Nuclear"='trend5')),
+                             "Wind Vs Nuclear"='trend5')),)
               
-              box(title = "A: Amount of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                  plotOutput("t1", height = "300px", width="300px"),
-                  plotOutput("t2", height = "150px", width="150px"),
-                  plotOutput("t3", height = "150px", width="150px"),
-                  plotOutput("t4", height = "150px", width="150px"),
-                  
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "A: Amount of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA1", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "A: Percent of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA2", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Amount of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB1", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Percent of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB2", height = "150px", width="150px"))
-                     )
-              )
-              
-            ),
-            fluidRow(
-              column(3,
-                     fluidRow(
-                       box(title = "A: Graph of Energy for source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA3", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "A: % Graph of Energy source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA4", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Graph of Energy for source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB3", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B:%Graph of Energy for source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB4", height = "150px", width="150px"))
-                     )
-              )
-            ),
-            fluidRow(
-              column(3,
-                     fluidRow(
-                       box(title = "A: Graph of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA5", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "A: Graph of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA6", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Graph of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB5", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Graph of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB6", height = "150px", width="150px"))
-                     )
-              )
-              
-            ),
-            fluidRow(
-              column(3,
-                     fluidRow(
-                       box(title = "A: Map of Energy for source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA7", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "A: % Map of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsA8", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Map of Energy per source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB7", height = "150px", width="150px"))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B:% Map of Energy for source", solidHeader = TRUE, status = "primary", width =20,height=20,
-                           plotOutput("trendsB8", height = "150px", width="150px"))
-                     )
-              )
-              
-            )#fluidrow end
+             
     ),
     
     #third tab opens up the summary page for all the energy sources in the US
@@ -360,55 +250,45 @@ body<-dashboardBody(
             fluidRow(
               column(3,
                      fluidRow(
-                       box(title = "A: Amount Graph of Energy for source", solidHeader = TRUE, status = "primary", width = 30,
-                           plotOutput("plot3", height = 300))
+                       box(title = "A: Amount Graph of Energy ", solidHeader = TRUE, status = "primary", width = 30,
+                           plotOutput("plotA3", height = 300))
                      )
               ),
               column(3,
                      fluidRow(
-                       box(title = "A: Percent Graph of Energy for source", solidHeader = TRUE, status = "primary", width =30,
-                           plotOutput("plot4", height = 300))
+                       box(title = "A: % Graph of Energy ", solidHeader = TRUE, status = "primary", width =30,
+                           plotOutput("plotA4", height = 300))
                      )
               ),
               column(3,
                      fluidRow(
-                       box(title = "B: Amount of Energy for source", solidHeader = TRUE, status = "info", width = 30,
+                       box(title = "B: Amount Graph of Energy", solidHeader = TRUE, status = "info", width = 30,
                            plotOutput("plotB3", height = 300))
                      )
               ),
               column(3,
                      fluidRow(
-                       box(title = "B: Percent of Energy for source", solidHeader = TRUE, status = "info", width = 30,
+                       box(title = "B: % Graph of Energy", solidHeader = TRUE, status = "info", width = 30,
                            plotOutput("plotB4", height = 300))
                      )
               )
             ),
             fluidRow(
-              column(3,
+              column(6,
                      fluidRow(
-                       box(title = "A: Amount of Energy for source", solidHeader = TRUE, status = "primary", width = 30,
+                       box(title = "A: Table for Source", solidHeader = TRUE, status = "primary", width = 60,
                            dataTableOutput("plotA5", height = 200))
                      )
               ),
-              column(3,
+             
+              column(6,
                      fluidRow(
-                       box(title = "A: Percent of Energy for source", solidHeader = TRUE, status = "primary", width = 30,
-                           dataTableOutput("plotA6", height = 200))
-                     )
-              ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Amount of Energy per source", solidHeader = TRUE, status = "info", width = 30,
+                       box(title = "B: Table for Source", solidHeader = TRUE, status = "info", width = 60,
                            dataTableOutput("plotB5", height = 200))
                      )
               ),
-              column(3,
-                     fluidRow(
-                       box(title = "B: Percent of Energy per source", solidHeader = TRUE, status = "info", width = 30,
-                           dataTableOutput("plotB6", height = 200))
-                     )
-              )
               
+    
             ),
             fluidRow(
               column(3,
@@ -455,6 +335,13 @@ server <- function(input, output) {
   theme_bare<- theme(panel.background=element_blank(),
                      legend.direction = "horizontal", legend.position = "bottom"
   )
+  
+  yearAReactive <- reactive({subset(amountsData, year(amountsData$YEAR) == input$yearA)})
+  yearBReactive <- reactive({subset(amountsData, year(amountsData$YEAR) == input$yearB)})
+  
+  #newNoonsReactive <- reactive({subset(allData, year(allData$newDate) == input$Year & Hour == 12)})
+  #oneRoomNoonReactive <- reactive({subset(allData$input$Room, year(allData$newDate) == input$Year & Hour == 12)})
+  
   
   # summ1 output for rendering
   output$summ1 <- renderPlot({
@@ -509,49 +396,65 @@ server <- function(input, output) {
   # For the COMPARISON TAB : plotA1 output for rendering
   output$plotA1 <- renderPlot({
     
-    t1<-subset(energy_file, energy_file$SOURCE==input$sourceA & energy_file$STATE==input$stateA)
-    ggplot(data=t1)+ geom_bar(mapping=aes(x=input$yearA,fill=input$sourceA))+
-      ggtitle("Amount of energy source for year")+ylab("Energy Amount (MWh)")+
-      xlab("Year") + theme_bare + 
-      scale_fill_manual(name=input$SOURCE,values=useColors)
+   # t1<-subset(energy_file, energy_file$SOURCE==input$sourceA & energy_file$STATE==input$stateA)
+    #ggplot(data=t1)+ geom_bar(mapping=aes(x=input$yearA,fill=input$sourceA))+
+     # ggtitle("Amount of energy source for year")+ylab("Energy Amount (MWh)")+
+      #xlab("Year") + theme_bare + 
+      #scale_fill_manual(name=input$SOURCE,values=useColors)
+    
+    t1<-subset(sourceData,sourceData$STATE==input$stateA)
+    
+   ggplot(data=t1)+ geom_bar(mapping=aes(x=input$yearA,y=GENERATION ,fill=SOURCE),stat="identity")+
+    ggtitle("Amount for year")+ylab("Energy Amount (MWh)")+ theme_bare+
+     scale_fill_manual(breaks= input$sourceA, values=useColors)+
+      xlab("Year")
     
   })
   
   output$plotA2 <- renderPlot({
-    t2<-subset(energy_file, energy_file$SOURCE==input$sourceA & energy_file$STATE==input$stateA)
-    ggplot(data=t2)+ geom_bar(mapping=aes(x=input$yearA,fill=input$sourceA),position="fill")+
-      ggtitle("Percent of energy source for year")+ylab ('Percent')+  xlab("Year")+
-      scale_y_continuous(labels = scales::percent)+theme_bare+ 
-      scale_fill_manual(name=input$SOURCE, values=useColors)
+    
+    
+   # t2<-subset(energy_file, energy_file$SOURCE==input$sourceA & energy_file$STATE==input$stateA)
+    #ggplot(data=t2)+ geom_bar(mapping=aes(x=input$yearA,fill=input$sourceA),position="fill")+
+     # ggtitle("% for year")+ylab ('Percent')+  xlab("Year")+
+     #scale_y_continuous(labels = scales::percent)+theme_bare+ 
+      #scale_fill_manual(name=input$SOURCE, values=useColors)
+    t2<-subset(sourceData,sourceData$STATE==input$stateA)
+    ggplot(data=t2)+ geom_bar(mapping=aes(x=input$yearA,fill=SOURCE),position="fill")+
+      ggtitle("% for the year")+ylab ('Percent')+ xlab("Year")+
+      scale_y_continuous(labels = scales::percent)+theme_bare+ scale_fill_manual(breaks= input$sourceA, values=useColors)
+    
   })
   
   #line chart for energy amount
   output$plotA3 <- renderPlot({
-    t3<-subset(amountsData, amountsData$SOURCE==input$sourceA & amountsData$STATE==input$stateA)
+    t3<-subset(amountsData, amountsData$SOURCE==input$sourceA & amountsData$STATE==input$stateA & percentsData$YEAR==input$yearA)
     ggplot(data=t3,aes(x=YEAR,y=GENERATION))+ 
-      stat_summary(aes(group=input$SOURCE,color=input$SOURCE),fun=sum, geom="line") +
-      scale_y_continuous(name="Energy Amount")+
-      theme_bare+ scale_color_manual(values=useColors)
+      stat_summary(aes(group=input$sourceA,color=input$sourceA),fun=sum, geom="line") + geom_point(aes(group=input$sourceA,color=input$sourceA))+
+      scale_y_continuous(name="Energy Amount")+ theme_bare+ 
+      scale_color_manual(values=useColors)+ scale_fill_manual(breaks= input$sourceA, values=useColors)
   })
   
-  #line chart for percent NOT DONE
+  #line chart for percent 
   output$plotA4 <- renderPlot({
-    t4<-subset(energy_file, energy_file$SOURCE==input$sourceA & energy_file$STATE==input$stateA)
-    ggplot(data=t4,aes(x=YEAR,y=GENERATION))+ 
-      stat_summary(aes(group=input$SOURCE,color=input$SOURCE),fun=sum, geom="line") +
-      scale_y_continuous(name="Energy Amount")+
+    t4<-subset(percentsData, percentsData$SOURCE==input$sourceA & percentsData$STATE==input$stateA & percentsData$YEAR==input$yearA) 
+    ggplot(data=t4,aes(x=YEAR,y=PERCENTS))+ 
+      stat_summary(aes(group=input$sourceA,color=input$sourceA),fun=sum, geom="line") + geom_point(aes(group=input$sourceA,color=input$sourceA))+
+      scale_y_continuous(name="Percent")+
       theme_bare+ scale_color_manual(values=useColors)
   })
   
   #table amount
   output$plotA5 <- DT::renderDataTable({
-    DT::datatable(displayAmounts, rownames=FALSE)
+    new1<-subset(percentsData, percentsData$SOURCE==input$sourceA & percentsData$STATE==input$stateA & percentsData$YEAR==input$yearA )
+    new1<-select(new1,YEAR,STATE,GENERATION,PERCENTS)
+    DT::datatable(new1, rownames=FALSE)
   })
   
   #table percent
-  output$plotA6 <- DT::renderDataTable({
-    DT::datatable(displayAmounts, rownames=FALSE)
-  })
+ # output$plotA6 <- DT::renderDataTable({
+  #  DT::datatable(displayAmounts, rownames=FALSE)
+  #})
   
   #heatmap of the US for amount
   output$plotA7 <- renderPlot({
@@ -563,8 +466,10 @@ server <- function(input, output) {
     
     plot_usmap(data=map7,values="GENERATION")+
       labs(title = "US States",subtitle = "US Map for Energy Amounts.") + 
-      theme(panel.background = element_rect(color = "black", fill = "lightblue"))
-    
+      theme(panel.background = element_rect(color = "black", fill = "lightblue"))+
+      scale_fill_continuous(low = "white", high ="darkblue", 
+                          name = "Energy",label = scales::comma) + 
+      theme(legend.position = "right")
   })
   #heatmap of the US for percent needs DF with two columns(FIPS,Values)
   output$plotA8 <- renderPlot({
@@ -576,55 +481,62 @@ server <- function(input, output) {
     
     plot_usmap(data=map8,values="PERCENTS")+
       labs(title = "US States",subtitle = "US Map for Percents.") + 
-      theme(panel.background = element_rect(color = "black", fill = "lightblue"))
+      theme(panel.background = element_rect(color = "black", fill = "lightblue"))+
+      scale_fill_continuous(low = "white", high ="darkblue", 
+                            name = "Percents",label = scales::comma) + 
+      theme(legend.position = "right")
   })
   
   #Rendering for Panel B
   
   output$plotB1 <- renderPlot({
-    b1<-subset(energy_file, energy_file$SOURCE==input$sourceB & energy_file$STATE==input$stateB)
-    ggplot(data=b1)+ geom_bar(mapping=aes(x=input$yearB,fill=input$sourceB))+
-      ggtitle("Amount of energy source for year")+ylab("Energy Amount (MWh)")+
-      xlab("Year") + theme_bare + 
-      scale_fill_manual(name=input$SOURCE,values=useColors)
+    b1<-subset(sourceData,sourceData$STATE==input$stateB)
+    
+    ggplot(data=b1)+ geom_bar(mapping=aes(x=input$yearB,y=GENERATION ,fill=SOURCE),stat="identity")+
+      ggtitle("Amount for year")+ylab("Energy Amount (MWh)")+ theme_bare+
+      scale_fill_manual(breaks= input$sourceB, values=useColors)+
+      xlab("Year")
   })
   
   output$plotB2 <- renderPlot({
-    b2<-subset(energy_file, energy_file$SOURCE==input$sourceB & energy_file$STATE==input$stateB)
-    ggplot(data=b2)+ geom_bar(mapping=aes(x=input$yearB,fill=input$sourceB),position="fill")+
-      ggtitle("Percent of energy source for year")+ylab ('Percent')+  xlab("Year")+
-      scale_y_continuous(labels = scales::percent)+theme_bare+ 
-      scale_fill_manual(name=input$SOURCE, values=useColors)
+    b2<-subset(sourceData,sourceData$STATE==input$stateB)
+    ggplot(data=b2)+ geom_bar(mapping=aes(x=input$yearB,fill=SOURCE),position="fill")+
+      ggtitle("% for the year")+ylab ('Percent')+ xlab("Year")+
+      scale_y_continuous(labels = scales::percent)+theme_bare+ scale_fill_manual(breaks= input$sourceB, values=useColors)
+    
+    
   })
   
   #line chart amount
   output$plotB3 <- renderPlot({
-    b3<-subset(energy_file, energy_file$SOURCE==input$sourceB & energy_file$STATE==input$stateB)
+    b3<-subset(percentsData, percentsData$SOURCE==input$sourceB & percentsData$STATE==input$stateB & percentsData$YEAR==input$yearB )
     ggplot(data=b3,aes(x=YEAR,y=GENERATION))+ 
-      stat_summary(aes(group=input$SOURCE,color=input$SOURCE),fun=sum, geom="line") +
+      stat_summary(aes(group=input$sourceB,color=input$sourceB),fun=sum, geom="line") + geom_point(aes(group=input$sourceB,color=input$sourceB))+
       scale_y_continuous(name="Energy Amount")+
-      theme_bare+ scale_color_manual(values=useColors)
+      theme_bare+ scale_color_manual(values=useColors)+ scale_fill_manual(breaks= input$sourceB, values=useColors)
   })
   
   #line chart percent NOT DONE YET 
   output$plotB4 <- renderPlot({
-    b4<-subset(energy_file, energy_file$SOURCE==input$sourceB & energy_file$STATE==input$stateB)
-    ggplot(data=b4,aes(x=YEAR,y=GENERATION))+ 
-      stat_summary(aes(group=input$SOURCE),fun=sum, geom="line") +
+    b4<-subset(percentsData, percentsData$SOURCE==input$sourceB & percentsData$STATE==input$stateB & percentsData$YEAR==input$yearB )
+    ggplot(data=b4,aes(x=YEAR,y=PERCENTS))+ 
+      stat_summary(aes(group=input$sourceB,color=input$sourceB),fun=sum, geom="line") + geom_point(aes(group=input$sourceB,color=input$sourceB))+
       scale_y_continuous(name="Percent")+
-      theme_bare+ scale_color_manual(values=useColors)
+      theme_bare+ scale_color_manual(values=useColors)+ scale_fill_manual(breaks=input$sourceB, values=useColors)
   })
   
   #table amount
   output$plotB5 <- DT::renderDataTable({
-    displayAmounts
+    new2<-subset(percentsData, percentsData$SOURCE==input$sourceB & percentsData$STATE==input$stateB & percentsData$YEAR==input$yearB )
+    new2<-select(new2,YEAR,STATE,GENERATION,PERCENTS)
+    DT::datatable(new2, rownames=FALSE)
   })
   
   
   #table percent
-  output$plotB6 <- DT::renderDataTable({
-    displayPercents
-  })
+ # output$plotB6 <- DT::renderDataTable({
+  #  displayPercents
+  #})
   
   
   #heatmap of the US for amounnt
@@ -637,7 +549,10 @@ server <- function(input, output) {
     
     plot_usmap(data=bmap7,values="GENERATION")+
       labs(title = "US States",subtitle = "US Map for Energy Amounts.") + 
-      theme(panel.background = element_rect(color = "black", fill = "lightblue"))
+      theme(panel.background = element_rect(color = "black", fill = "lightblue"))+
+      scale_fill_continuous(low = "white", high ="darkblue", 
+                            name = "Energy",label = scales::comma) + 
+      theme(legend.position = "right")
     
     
   })
@@ -651,7 +566,10 @@ server <- function(input, output) {
     
     plot_usmap(data=bmap8,values="PERCENTS")+
       labs(title = "US States",subtitle = "US Map for Percents.") + 
-      theme(panel.background = element_rect(color = "black", fill = "lightblue"))
+      theme(panel.background = element_rect(color = "black", fill = "lightblue"))+
+      scale_fill_continuous(low = "white", high ="darkblue", 
+                            name = "Percents",label = scales::comma) + 
+      theme(legend.position = "right")
     
   })
   
